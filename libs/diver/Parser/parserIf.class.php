@@ -1,4 +1,5 @@
 <?php
+//if语句
 class parserIf implements parserDecorade{
 	private $tpl;
 
@@ -7,9 +8,21 @@ class parserIf implements parserDecorade{
 	}
 
 	function parser(){
-		$varPattern='/\{\$([\w]+)\}/';
-		if( preg_match($varPattern, $this->tpl) ){
-			$this->tpl = preg_replace($varPattern, "<?php echo \$this->_vars['$1']; ?>", $this->tpl);
+		$ifPattern='/\{if\s+\$([\w+])\}/';
+		$endifPattern = '/\{\/if\}/';
+		$elsePattern = '/\{else\}/';
+		if( preg_match($ifPattern, $this->tpl) ){
+			if ( preg_match($endifPattern,$this->tpl) ){
+				$this->tpl = preg_replace($ifPattern, "<?php if(\$this->date['$1']){?>", $this->tpl);
+				$this->tpl = preg_replace($endifPattern,"<?php } ?>",$this->tpl);
+
+				if( preg_match($elsePattern,$this->tpl) ){
+					$this->tpl = preg_replace($elsePattern, "<?php }else{ ?>", $this->tpl);
+				}
+			}
+			else{
+				exit('ERROR:IF语句没有关闭!');
+			}
 		}
 		return $this->tpl;
 	}

@@ -13,4 +13,5 @@ require ROOT_DIR.'/libs/Tpl.include.php';
 $tpl = new Tpl();
 $name = 'magox';
 $tpl->assign('name',$name);
+$tpl->assign('a',false);
 $tpl->display('index.tpl');
