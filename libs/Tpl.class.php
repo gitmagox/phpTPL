@@ -5,6 +5,8 @@ class Tpl
 	private $parser_type;
 	//注入变量数组
 	private $date = array();
+	//系统变量数组
+	private $sysdate = array();
 	//构造方法
 	public function __construct($parser_type =PARSER_TYPE)
 	{
@@ -12,6 +14,13 @@ class Tpl
 			exit('ERROR:模板目录 or 缓存目录 or 编译目录 不存在！！');
 
 		$this->setParser(new $parser_type()) or exit('ERROR:实例化模板解析类('.$parser_type.')失败');
+
+		//注入系统变量
+		$_sxe = simplexml_load_file(TPL_ROOT."/config/sysvar.xml");
+		$tagLib=$_sxe->xpath('/root/tag');
+		foreach($tagLib as $tag){
+			$this->sysdate["$tag->name"] = "$tag->value";
+		}
 	}
 	//注义变量
 	public function assign($tplvar,$var)

@@ -7,10 +7,14 @@ class parserInclude implements parserDecorade{
 	}
 
 	function parser(){
-		$varPattern='/\{\$([\w]+)\}/';
-		if( preg_match($varPattern, $this->tpl) ){
-			$this->tpl = preg_replace($varPattern, "<?php echo \$this->_vars['$1']; ?>", $this->tpl);
+		$includePattern='/\{include\s+file=\"([\w\.\-]+)\"\}/';
+		if(preg_match($includePattern, $this->tpl,$file)){
+			if(!file_exists($file[1]) || empty($file)){
+				exit('ERROR:引入模板文件出错');
+			}
+			$this->tpl = preg_replace($includePattern,"<?php include '$1' ?>", $this->tpl);
 		}
+		
 		return $this->tpl;
 	}
 }

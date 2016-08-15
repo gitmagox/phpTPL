@@ -4,6 +4,8 @@ $config = [
 	'type'   => 'Parser',
 	//解析装饰器配置
 	'Parser' => [
+		//解析系统变量
+		'parserSysvar',
 		//解析单个变量
 		'parserVar',
 		//解析if语句
