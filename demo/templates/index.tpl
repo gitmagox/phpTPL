@@ -17,7 +17,11 @@
 	{/if}
 
 	<br>
+<h3>foreach语句</h3>
 
+{foreach $array(key,value)}
+	{@key}==>{@value}<br>
+{/foreach}
 	
 
 

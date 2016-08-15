@@ -12,6 +12,7 @@ require ROOT_DIR.'/libs/Tpl.include.php';
 
 $tpl = new Tpl();
 $name = 'magox';
+$tpl->assign('array',array(1,2,3,4));
 $tpl->assign('name',$name);
 $tpl->assign('a',false);
 $tpl->display('index.tpl');
