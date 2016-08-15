@@ -7,8 +7,7 @@ class Parser
 	private $parserDecorades = array();
 	//构造方法
 	public function __construct(){
-		global $config;
-		foreach ($config[PARSER_TYPE] as $key => $value) {
+		foreach (get_tpl_config(PARSER_TYPE) as $key => $value) {
 			$this->addDecorade(new $value());
 		}
 	}

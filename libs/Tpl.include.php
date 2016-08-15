@@ -3,11 +3,12 @@
 defined(TPL_ROOT) or define(TPL_ROOT,dirname(__FILE__));
 require TPL_ROOT.'/tpl.class.php';
 require TPL_ROOT.'/diver/parserDecorade.class.php';
-require TPL_ROOT.'/config/config.php';
+require TPL_ROOT.'/common.function.php';
+
 
 
 //定义解析引擎
-defined(PARSER_TYPE) or define(PARSER_TYPE,$config['type']);
+defined(PARSER_TYPE) or define(PARSER_TYPE,get_tpl_config('type'));
 
 $parserClass = TPL_ROOT.'/diver/'.PARSER_TYPE.'.class.php';
 
@@ -17,6 +18,6 @@ file_exists($parserClass) && require_once $parserClass;
 
 
 //自动加载装饰器
-foreach ($config[PARSER_TYPE] as $value) {
+foreach (get_tpl_config(PARSER_TYPE) as $value) {
 	require_once TPL_ROOT.'/diver/'.PARSER_TYPE.'/'.$value.'.class.php';
 }

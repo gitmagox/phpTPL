@@ -30,7 +30,6 @@ class Tpl
 
 		$parserfile = TPL_C.md5($_tplfile).$_tplfile.".php";
 		if( !file_exists( $parserfile ) ){
-			p($this->parser_type);
 			$this->parser_type->setTpl($tplfile);
 			$this->parser_type->run($parserfile);
 		}
