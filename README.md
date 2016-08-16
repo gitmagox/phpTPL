@@ -45,6 +45,8 @@
 	#### 配置项：
 
 	<?php
+	//是否开启缓存(0为不开启，1为开启)
+	define('OB_START',0);
 	//模板目录
 	define('TPL_DIR',ROOT_DIR.'/demo/templates/');
 	//编译目录
