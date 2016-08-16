@@ -1,6 +1,8 @@
 <?php 
 //根目录
+date_default_timezone_set('PRC');
 define('ROOT_DIR',dirname(__FILE__));
+define('OB_START',0);
 
 require ROOT_DIR."/demo/config.php";
 

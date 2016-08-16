@@ -34,6 +34,8 @@ text.php:<br>
 sitename:{$$sitename}<br>
 pagesize:{$$pagesize}
 </center>
+fsdffsasdfdsfdfsd
 
+afdsgsdfdfsdfsfsdfsd
 </body>
 </html>
